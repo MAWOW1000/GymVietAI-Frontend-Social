@@ -11,6 +11,7 @@ const Profile = () => {
     <Wrapper>
       <UserInfo
         name={user.name}
+        gmail={user.gmail.split("@")[0]}
         lastName={user.lastName}
         avatar={avatar}
         description={user.description}

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.nav`
   height: 6rem;
@@ -6,7 +6,8 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
+  background: #0a0a0a;
+
   .nav-center {
     display: flex;
     width: 90vw;
@@ -17,7 +18,7 @@ const Wrapper = styled.nav`
     background: transparent;
     border-color: transparent;
     font-size: 1.75rem;
-    color: #f36100;
+    color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;

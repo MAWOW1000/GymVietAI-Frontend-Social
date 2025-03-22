@@ -6,18 +6,18 @@ const Wrapper = styled.div`
     display: inline-block;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     background: transparent;
-    border: 1px solid #f36100;
+    border: 0.7px solid rgba(255, 255, 255, 0.2);
     border-radius: 0.5rem;
     cursor: pointer;
-    color: darkgray;
+    color: #fff;
     transition: background 0.3s ease;
-    width: 40rem;
+    width: 36rem;
   }
 
   .edit-profile:hover {
-    background: #f36100;
+    background: #101010;
     color: #fff;
   }
 
@@ -41,6 +41,8 @@ const Wrapper = styled.div`
     color: #fff;
     visibility: hidden;
     opacity: 0;
+    z-index: -1;
+    pointer-events: none;
   }
 
   .btn-yes,
@@ -50,6 +52,11 @@ const Wrapper = styled.div`
     font-size: 1.2rem;
     border: none;
     outline: none;
+
+    &:hover {
+      border-radius: 0%;
+      background: rgba(58, 58, 58, 0.7);
+    }
   }
 
   .show-overlay {
@@ -157,9 +164,10 @@ const Wrapper = styled.div`
       background: #101010;
     }
 
-    .hidden {
+    .show-overlay .hidden {
       opacity: 1;
       visibility: visible;
+      pointer-events: visible;
     }
   }
 `;

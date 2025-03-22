@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.section`
+  background: #0a0a0a;
+  min-height: 100vh;
   .dashboard {
     display: grid;
     grid-template-columns: 1fr;

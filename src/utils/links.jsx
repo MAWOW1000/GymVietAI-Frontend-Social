@@ -1,21 +1,19 @@
 import React from "react";
 
-import { IoBarChartSharp } from "react-icons/io5";
-import { FaWpforms } from "react-icons/fa";
-import { ImProfile } from "react-icons/im";
-import { MdAdminPanelSettings, MdExplore, MdQueryStats } from "react-icons/md";
-import { FaRegMessage } from "react-icons/fa6"
+import { MdExplore, MdPeopleAlt } from "react-icons/md";
+import { GoHomeFill } from "react-icons/go";
+import { BiSolidMessage } from "react-icons/bi";
 
 const links = [
   {
     text: "home",
     path: ".",
-    icon: <FaWpforms />,
+    icon: <GoHomeFill />,
   },
   {
     text: "message",
     path: "message",
-    icon: <FaRegMessage />,
+    icon: <BiSolidMessage />,
   },
   {
     text: "explore",
@@ -25,7 +23,7 @@ const links = [
   {
     text: "profile",
     path: "profile",
-    icon: <ImProfile />,
+    icon: <MdPeopleAlt />,
   },
 ];
 

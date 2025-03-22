@@ -11,6 +11,7 @@ const Dashboard = () => {
     name: "Thio",
     lastName: "Prando",
     description: "I am the bone of my sword",
+    gmail: "Standopawa@gmail.com",
   };
   const [showSidebar, setShowSidebar] = useState(false);
 

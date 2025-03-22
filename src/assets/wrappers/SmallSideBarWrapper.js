@@ -7,69 +7,86 @@ const Wrapper = styled.aside`
 
   .sidebar-container {
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    background: #0a0a0a;
     display: flex;
-    justify-content: center;
+    flex-direction: row; /* Căn ngang */
     align-items: center;
+    justify-content: space-around; /* Căn đều các phần tử */
     z-index: -1;
     opacity: 0;
-    transition: 0.3s ease-in-out all;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     visibility: hidden;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
   }
+
   .show-sidebar {
     z-index: 99;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
   }
+
   .content {
-    background: #fff;
-    width: 90vw;
-    height: 95vh;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    position: relative;
+    width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    flex-direction: column;
-    margin-top: 1rem;
+    justify-content: space-around;
+    padding: 1rem;
   }
-  .close-btn {
-    position: absolute;
-    left: 10px;
-    background: transparent;
-    border-color: transparent;
-    font-size: 2rem;
-    color: #842029;
-    cursor: pointer;
-  }
+
   .nav-links {
-    padding-top: 2rem;
     display: flex;
-    flex-direction: column;
-    margin-top: 2rem;
+    flex-direction: row; /* Để các link nằm ngang */
+    justify-content: space-around;
+    width: 100%;
   }
+
   .nav-link {
     display: flex;
     align-items: center;
     color: #64748b;
-    padding: 2rem 2rem;
+    padding: 1rem;
     text-transform: capitalize;
     transition: 0.3s ease-in-out all;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
   }
+
   .nav-link:hover {
-    color: #f36100;
+    color: #fff;
   }
+
   .icon {
     font-size: 2rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     display: grid;
     place-items: center;
   }
+
   .active {
-    color: #f36100;
+    color: #fff;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: #842029;
+    cursor: pointer;
   }
 `;
+
 export default Wrapper;

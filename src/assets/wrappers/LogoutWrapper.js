@@ -8,10 +8,11 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0 0.5rem;
-    background-color: #f36100;
+    background-color: #0a0a0a;
     color: #fff;
     border: transparent;
     border-radius: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     letter-spacing: 1px;
     padding: 0.375rem 0.75rem;
   }
@@ -28,8 +29,9 @@ const Wrapper = styled.div`
     box-shadow: 0 4px 6px -1px rgb(255, 255, 255);
     text-align: center;
     visibility: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 0.25rem;
-    background: #f36100;
+    background: #0a0a0a;
   }
   .show-dropdown {
     visibility: visible;
