@@ -3,8 +3,10 @@ const Wrapper = styled.div`
   position: relative;
 
   .edit-profile {
-    display: inline-block;
-    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 1rem;
     font-size: 1rem;
     font-weight: 500;
     background: transparent;
@@ -13,7 +15,8 @@ const Wrapper = styled.div`
     cursor: pointer;
     color: #fff;
     transition: background 0.3s ease;
-    width: 36rem;
+    width: 80vw;
+    max-width: 38rem;
   }
 
   .edit-profile:hover {

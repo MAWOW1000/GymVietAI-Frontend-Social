@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0rem;
     h3 {
       margin-bottom: 0;
     }
@@ -48,11 +48,46 @@ const Wrapper = styled.div`
     margin-top: 0.5rem;
     width: 100%;
     text-align: left;
-    padding: 0 1rem;
+    padding: 0rem;
     font-weight: 100;
   }
   p {
     font-size: 1.05rem;
+  }
+
+  .other {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0rem 0.5rem 1.5rem;
+    p {
+      margin: 0;
+      font-size: 1rem;
+      color: #fff;
+      opacity: 0.4;
+      font-weight: 200;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .icons {
+      display: flex;
+      gap: 10px;
+      cursor: pointer;
+
+      span {
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .tabbar {
+    width: 100%;
+    max-width: 100%;
   }
 `;
 

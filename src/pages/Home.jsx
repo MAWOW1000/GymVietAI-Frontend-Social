@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
+import CreateContent from "../components/CreateContent";
+import Wrapper from "../assets/wrappers/HomeWrapper";
+import { AllPosts } from "../components";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
-  )
-}
+    <Wrapper>
+      <div className="Home">
+        <CreateContent />
+        <AllPosts />
+      </div>
+    </Wrapper>
+  );
+};
 
-export default Home
+export default Home;
