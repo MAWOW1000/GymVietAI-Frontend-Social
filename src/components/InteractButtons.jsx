@@ -5,7 +5,7 @@ import { BiRepost } from "react-icons/bi";
 
 const InteractButtons = () => {
   return (
-    <div className="interact">
+    <div className="interact" onClick={(e) => e.stopPropagation()}>
       <button>
         <FaRegHeart />
         <p>301</p>
