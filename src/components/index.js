@@ -14,3 +14,5 @@ export { default as AllPosts } from "./AllPosts";
 export { default as DropdownMenu } from "./DropdownMenu";
 export { default as InteractButtons } from "./InteractButtons";
 export { default as PostPopup } from "./PostPopup";
+export { default as Comment } from "./Comment";
+export { default as CommentButton } from "./CommentButton";

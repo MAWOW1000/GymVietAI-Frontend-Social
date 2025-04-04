@@ -5,10 +5,29 @@ import DropdownMenu from "./DropdownMenu";
 import InteractButtons from "./InteractButtons";
 import PostPopup from "./PostPopup";
 
-const Post = ({ avatar, name, lastName, content, image }) => {
+const Post = ({
+  avatar,
+  name,
+  lastName,
+  content,
+  image,
+  comments,
+  initialLikes,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [likes, setLikes] = useState(initialLikes);
+  const [liked, setLiked] = useState(false);
   const buttonRef = useRef(null);
+
+  const handleCommentClick = () => {
+    setPopupOpen(true);
+  };
+
+  const handleLikeClick = () => {
+    setLiked((prev) => !prev);
+    setLikes((prev) => (liked ? prev - 1 : prev + 1));
+  };
 
   return (
     <Wrapper style={{ width: "100%" }}>
@@ -49,7 +68,12 @@ const Post = ({ avatar, name, lastName, content, image }) => {
         </div>
 
         {/* interact buttons */}
-        <InteractButtons />
+        <InteractButtons
+          initialLikes={likes}
+          liked={liked}
+          onLikeClick={handleLikeClick}
+          onCommentClick={handleCommentClick}
+        />
       </div>
 
       {/* popup */}
@@ -62,6 +86,10 @@ const Post = ({ avatar, name, lastName, content, image }) => {
           image={image}
           onClose={() => setPopupOpen(false)}
           className={popupOpen ? "active" : ""}
+          comments={comments}
+          likes={likes}
+          liked={liked} // Truyền trạng thái liked vào PostPopup
+          onLikeClick={handleLikeClick} // Truyền hàm onLikeClick vào PostPopup
         />
       )}
     </Wrapper>

@@ -1,6 +1,7 @@
 import { IoClose } from "react-icons/io5";
 import Wrapper from "../assets/wrappers/PostPopupWrapper";
 import InteractButtons from "./InteractButtons";
+import Comment from "./Comment";
 
 const PostPopup = ({
   avatar,
@@ -10,6 +11,10 @@ const PostPopup = ({
   image,
   onClose,
   className,
+  comments,
+  likes,
+  liked, // Nhận trạng thái liked từ Post
+  onLikeClick,
 }) => {
   return (
     <Wrapper className={className}>
@@ -31,7 +36,15 @@ const PostPopup = ({
             {image && <img src={image} alt="post" className="popup-image" />}
           </div>
           <div className="popup-footer">
-            <InteractButtons />
+            <InteractButtons
+              initialLikes={likes}
+              liked={liked}
+              onLikeClick={onLikeClick} // Không cần xử lý sự kiện ở đây
+            />
+          </div>
+
+          <div className="post-comment">
+            <Comment comments={comments} />
           </div>
         </div>
       </div>
