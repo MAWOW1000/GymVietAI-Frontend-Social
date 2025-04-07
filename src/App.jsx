@@ -1,5 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, Profile, Message, Explore, Dashboard, Error } from "./pages";
+import { Dashboard, Error } from "./pages";
+import Home from "./pages/Home/Home";
+import Profile from "./pages/Profile/Profile";
+import Explore from "./pages/Explore/Explore";
+import Message from "./pages/Message/Message";
 
 const router = createBrowserRouter([
   {

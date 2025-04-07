@@ -1,7 +1,7 @@
 import React from "react";
-import CreateContent from "../components/CreateContent";
-import Wrapper from "../assets/wrappers/HomeWrapper";
-import { AllPosts } from "../components";
+import CreateContent from "../../components/CreateContent";
+import Wrapper from "./HomeWrapper";
+import AllPosts from "./components/AllPosts";
 
 const Home = () => {
   return (

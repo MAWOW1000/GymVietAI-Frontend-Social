@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import Wrapper from "../assets/wrappers/ProfileTabsWrapper";
-import CreateContent from "./CreateContent";
+import Wrapper from "./ProfileTabsWrapper";
+import CreateContent from "../../../../components/CreateContent";
 
 const ProfileTabs = () => {
   const [activeTab, setActiveTab] = useState("social");

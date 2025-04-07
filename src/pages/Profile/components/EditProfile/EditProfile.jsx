@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Wrapper from "../assets/wrappers/EditProfileWrapper";
-import FormRow from "./FormRow";
-import { useDashboardContext } from "../pages/Dashboard";
+import Wrapper from "./EditProfileWrapper";
+import FormRow from "../FormRow";
+import { useDashboardContext } from "../../../Dashboard";
 
 const EditProfile = () => {
   const [showEditProfile, setShowEditProfile] = useState(false);

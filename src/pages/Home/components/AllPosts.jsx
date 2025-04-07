@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Post } from "../components";
-import { useDashboardContext } from "../pages/Dashboard";
+import Post from "../components/Post/Post";
 import Modal from "react-modal";
-import avatar from "../assets/images/avatar-1.jpg";
-import image from "../assets/images/post-img.jpg";
+import avatar from "../../../assets/images/avatar-1.jpg";
+import image from "../../../assets/images/post-img.jpg";
+import { useDashboardContext } from "../../Dashboard";
 
 Modal.setAppElement("#root"); // Đảm bảo modal hoạt động tốt trên ứng dụng
 

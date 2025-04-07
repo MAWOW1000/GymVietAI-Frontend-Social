@@ -1,8 +1,10 @@
 import React from "react";
-import { useDashboardContext } from "./Dashboard";
-import avatar from "../assets/images/avatar-1.jpg";
-import { EditProfile, ProfileTabs, UserInfo } from "../components";
-import Wrapper from "../assets/wrappers/ProfileWrapper";
+import { useDashboardContext } from "../Dashboard";
+import avatar from "../../assets/images/avatar-1.jpg";
+import EditProfile from "./components/EditProfile/EditProfile";
+import ProfileTabs from "./components/ProfileTabs/ProfileTabs";
+import UserInfo from "./components/UserInfo";
+import Wrapper from "./ProfileWrapper";
 
 const Profile = () => {
   const { user } = useDashboardContext();

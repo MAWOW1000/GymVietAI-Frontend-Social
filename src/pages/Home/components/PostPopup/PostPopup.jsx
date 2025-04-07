@@ -1,7 +1,7 @@
 import { IoClose } from "react-icons/io5";
-import Wrapper from "../assets/wrappers/PostPopupWrapper";
-import InteractButtons from "./InteractButtons";
-import Comment from "./Comment";
+import Wrapper from "./PostPopupWrapper";
+import InteractButtons from "../InteractButtons";
+import Comment from "../Comment";
 
 const PostPopup = ({
   avatar,

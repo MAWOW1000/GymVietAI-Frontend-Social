@@ -1,6 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { SmallSideBar, BigSideBar, NavBar } from "../components";
+import { SmallSideBar, BigSideBar, Header } from "../components";
 import Wrapper from "../assets/wrappers/DashboardWrapper";
 
 const DashboardContext = createContext();
@@ -34,7 +34,7 @@ const Dashboard = () => {
           <BigSideBar />
           <SmallSideBar />
           <div>
-            <NavBar />
+            <Header />
             <div className="dashboard-page">
               <Outlet />
             </div>

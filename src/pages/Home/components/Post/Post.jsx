@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import { IoIosMore } from "react-icons/io";
-import Wrapper from "../assets/wrappers/PostWrapper";
-import DropdownMenu from "./DropdownMenu";
-import InteractButtons from "./InteractButtons";
-import PostPopup from "./PostPopup";
+import Wrapper from "./PostWrapper";
+import DropdownMenu from "../DropdownMenu";
+import InteractButtons from "../InteractButtons";
+import PostPopup from "../PostPopup/PostPopup";
 
 const Post = ({
   avatar,
