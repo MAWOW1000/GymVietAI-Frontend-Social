@@ -98,6 +98,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     margin: 0.5rem;
+    z-index: 0;
   }
 
   .post-user img {

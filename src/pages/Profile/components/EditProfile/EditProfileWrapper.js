@@ -116,7 +116,7 @@ const Wrapper = styled.div`
   }
 
   .form-input:focus {
-    border-bottom-color: #f36100;
+    border-bottom-color: #ccc;
   }
 
   .submit-btn,

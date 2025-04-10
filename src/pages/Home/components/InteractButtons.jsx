@@ -21,11 +21,11 @@ const InteractButtons = ({
       </button>
       <button>
         <TbShare3 />
-        <p>13</p>
+        <p></p>
       </button>
       <button>
         <BiRepost />
-        <p>27</p>
+        <p></p>
       </button>
     </div>
   );

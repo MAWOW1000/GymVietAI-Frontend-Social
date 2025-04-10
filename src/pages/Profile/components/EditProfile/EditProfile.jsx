@@ -16,7 +16,7 @@ const EditProfile = () => {
           setShowEditProfile(!showEditProfile);
         }}
       >
-        Edit Profile
+        Sửa Thông Tin
       </button>
 
       <div className={showEditProfile ? "overlay show-overlay" : "overlay"}>
@@ -26,24 +26,25 @@ const EditProfile = () => {
             className="btn btn-no"
             onClick={() => setShowEditProfile(false)}
           >
-            Cancel
+            Hủy
           </button>
           <h3 className="title">Edit Profile</h3>
           <button type="submit" className="btn btn-yes">
-            Done
+            Xong
           </button>
         </div>
       </div>
       <form className={showEditProfile ? "dropdown show-dropdown" : "dropdown"}>
-        <FormRow type="text" name="name" defaultValue={user.name} />
+        <FormRow type="text" name="Tên" defaultValue={user.name} />
         <FormRow
           type="text"
-          labelText="last name"
+          labelText="Họ"
           name="lastName"
           defaultValue={user.lastName}
         />
         <FormRow
           type="text"
+          labelText="mô tả"
           name="description"
           defaultValue={user.description}
         />
@@ -53,10 +54,10 @@ const EditProfile = () => {
             className="btn cancel-btn"
             onClick={() => setShowEditProfile(false)}
           >
-            Cancel
+            Hủy
           </button>
           <button type="submit" className="btn submit-btn">
-            Done
+            Xong
           </button>
         </div>
       </form>

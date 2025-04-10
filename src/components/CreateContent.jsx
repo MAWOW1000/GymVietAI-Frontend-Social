@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import avatar from "../assets/images/avatar-1.jpg";
 import Wrapper from "../assets/wrappers/CreateContentWrapper";
 import { CiCircleMore } from "react-icons/ci";
@@ -11,6 +11,21 @@ import { useDashboardContext } from "../pages/Dashboard";
 const CreateContent = () => {
   const [showCreateContent, setShowCreateContent] = useState(false);
   const { user } = useDashboardContext();
+  const [postImage, setPostImage] = useState(null);
+  const [postContent, setPostContent] = useState("");
+
+  const fileInputRef = useRef(null);
+
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPostImage(URL.createObjectURL(file)); // tạo đường dẫn tạm thời để hiển thị ảnh
+    }
+  };
 
   return (
     <Wrapper style={{ width: "100%" }}>
@@ -62,15 +77,57 @@ const CreateContent = () => {
 
             {/* form input */}
             <div className="post-input">
-              <textarea placeholder="Có gì mới?" rows="1" />
+              <textarea
+                placeholder="Có gì mới?"
+                rows="1"
+                value={postContent}
+                onChange={(e) => setPostContent(e.target.value)}
+              />
+
+              {postImage && (
+                <div className="preview-image">
+                  <img
+                    src={postImage}
+                    alt="preview"
+                    style={{
+                      maxWidth: "100%",
+                      marginTop: "10px",
+                    }}
+                  />
+                </div>
+              )}
               <div className="post-file">
-                <FaImage />
+                <span onClick={handleImageClick}>
+                  <FaImage style={{ cursor: "pointer" }} />
+                </span>
                 <MdEmojiEmotions />
                 <MdGifBox />
                 <IoLocation />
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={handleImageChange}
+                />
               </div>
             </div>
-            <button className="btn-confirm">Đăng</button>
+            <button
+              className="btn-confirm"
+              onClick={() => {
+                if (!postContent.trim() && !postImage) {
+                  alert("Vui lòng nhập nội dung hoặc chọn ảnh trước khi đăng!");
+                  return;
+                }
+                console.log("Nội dung:", postContent);
+                console.log("Ảnh:", postImage);
+                setPostContent("");
+                setPostImage(null);
+                setShowCreateContent(false);
+              }}
+            >
+              Đăng
+            </button>
           </div>
         </div>
       </div>

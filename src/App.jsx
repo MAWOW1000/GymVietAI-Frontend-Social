@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile";
 import Explore from "./pages/Explore/Explore";
 import Message from "./pages/Message/Message";
+import Search from "./pages/Search/Search";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "message",
         element: <Message />,
+      },
+      {
+        path: "search",
+        element: <Search />,
       },
     ],
   },

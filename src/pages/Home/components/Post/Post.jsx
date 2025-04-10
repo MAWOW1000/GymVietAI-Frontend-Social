@@ -15,9 +15,10 @@ const Post = ({
   initialLikes,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [likes, setLikes] = useState(initialLikes);
-  const [liked, setLiked] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false); //popup post
+  const [likes, setLikes] = useState(initialLikes); //tổng số lượt like
+  const [liked, setLiked] = useState(false); //check like chưa
+
   const buttonRef = useRef(null);
 
   const handleCommentClick = () => {
@@ -88,8 +89,8 @@ const Post = ({
           className={popupOpen ? "active" : ""}
           comments={comments}
           likes={likes}
-          liked={liked} // Truyền trạng thái liked vào PostPopup
-          onLikeClick={handleLikeClick} // Truyền hàm onLikeClick vào PostPopup
+          liked={liked}
+          onLikeClick={handleLikeClick}
         />
       )}
     </Wrapper>
