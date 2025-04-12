@@ -8,7 +8,20 @@ const InteractButtons = ({
   liked,
   onLikeClick,
   onCommentClick,
+  postId,
 }) => {
+  const handleShare = () => {
+    const postUrl = `${window.location.origin}/post/${postId}`;
+    navigator.clipboard
+      .writeText(postUrl)
+      .then(() => {
+        alert("Đã sao chép link bài viết!");
+      })
+      .catch((err) => {
+        console.error("Lỗi sao chép link:", err);
+      });
+  };
+
   return (
     <div className="interact" onClick={(e) => e.stopPropagation()}>
       <button onClick={onLikeClick}>
@@ -20,7 +33,7 @@ const InteractButtons = ({
         <p>25</p>
       </button>
       <button>
-        <TbShare3 />
+        <TbShare3 onClick={handleShare} />
         <p></p>
       </button>
       <button>

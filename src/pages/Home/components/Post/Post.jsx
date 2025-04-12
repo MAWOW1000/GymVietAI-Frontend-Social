@@ -5,18 +5,10 @@ import DropdownMenu from "../DropdownMenu";
 import InteractButtons from "../InteractButtons";
 import PostPopup from "../PostPopup/PostPopup";
 
-const Post = ({
-  avatar,
-  name,
-  lastName,
-  content,
-  image,
-  comments,
-  initialLikes,
-}) => {
+const Post = ({ post }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false); //popup post
-  const [likes, setLikes] = useState(initialLikes); //tổng số lượt like
+  const [likes, setLikes] = useState(post.initialLikes); //tổng số lượt like
   const [liked, setLiked] = useState(false); //check like chưa
 
   const buttonRef = useRef(null);
@@ -40,9 +32,9 @@ const Post = ({
         }}
       >
         <div className="post-user">
-          <img src={avatar} alt="avatar" />
+          <img src={post.avatar} alt="avatar" />
           <p>
-            {name} {lastName}
+            {post.name} {post.lastName}
           </p>
           <span
             className="more-icon"
@@ -64,8 +56,8 @@ const Post = ({
 
         {/* post content */}
         <div className="post-content">
-          <p>{content}</p>
-          <img src={image} alt="post" />
+          <p>{post.content}</p>
+          <img src={post.image} alt="post" />
         </div>
 
         {/* interact buttons */}
@@ -74,22 +66,20 @@ const Post = ({
           liked={liked}
           onLikeClick={handleLikeClick}
           onCommentClick={handleCommentClick}
+          postId={post.id}
         />
       </div>
 
       {/* popup */}
       {popupOpen && (
         <PostPopup
-          avatar={avatar}
-          name={name}
-          lastName={lastName}
-          content={content}
-          image={image}
+          post={{
+            ...post,
+            initialLikes: likes, // ghi đè lại số like hiện tại
+            liked: liked,
+          }}
           onClose={() => setPopupOpen(false)}
           className={popupOpen ? "active" : ""}
-          comments={comments}
-          likes={likes}
-          liked={liked}
           onLikeClick={handleLikeClick}
         />
       )}

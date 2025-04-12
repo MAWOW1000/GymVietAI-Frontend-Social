@@ -5,6 +5,7 @@ import Profile from "./pages/Profile/Profile";
 import Explore from "./pages/Explore/Explore";
 import Message from "./pages/Message/Message";
 import Search from "./pages/Search/Search";
+import Post from "./pages/Post/Post";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <Search />,
+      },
+      {
+        path: "post/:postId",
+        element: <Post />,
       },
     ],
   },

@@ -3,43 +3,43 @@ import Wrapper from "./PostPopupWrapper";
 import InteractButtons from "../InteractButtons";
 import Comment from "../Comment";
 
-const PostPopup = ({
-  avatar,
-  name,
-  lastName,
-  content,
-  image,
-  onClose,
-  className,
-  comments,
-  likes,
-  liked, // Nhận trạng thái liked từ Post
-  onLikeClick,
-}) => {
+const PostPopup = ({ post, onClose, className, onLikeClick }) => {
+  const {
+    avatar,
+    name,
+    lastName,
+    content,
+    image,
+    comments,
+    initialLikes,
+    liked,
+  } = post;
+
   return (
     <Wrapper className={className}>
-      {/* Bấm vào overlay để đóng */}
       <div className="popup-overlay" onClick={onClose}>
         <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-          {/* Nút đóng popup */}
           <button className="close-btn" onClick={onClose}>
             <IoClose />
           </button>
+
           <div className="popup-header">
             <img src={avatar} alt="avatar" className="avatar" />
             <p>
               {name} {lastName}
             </p>
           </div>
+
           <div className="popup-body">
             <p>{content}</p>
             {image && <img src={image} alt="post" className="popup-image" />}
           </div>
+
           <div className="popup-footer">
             <InteractButtons
-              initialLikes={likes}
+              initialLikes={initialLikes}
               liked={liked}
-              onLikeClick={onLikeClick} // Không cần xử lý sự kiện ở đây
+              onLikeClick={onLikeClick}
             />
           </div>
 

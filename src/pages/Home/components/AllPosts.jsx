@@ -79,7 +79,7 @@ const AllPosts = () => {
     <>
       {posts.map((post) => (
         <div key={post.id} onClick={() => setSelectedPost(post)}>
-          <Post {...post} />
+          <Post post={post} />
         </div>
       ))}
     </>
