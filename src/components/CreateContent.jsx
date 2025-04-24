@@ -7,13 +7,14 @@ import { FaImage } from "react-icons/fa";
 import { MdEmojiEmotions, MdGifBox } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
 import { useDashboardContext } from "../pages/Dashboard";
+import { privateAxios } from "../api/client";
 
-const CreateContent = () => {
+const CreateContent = ({ onPostCreated }) => {
   const [showCreateContent, setShowCreateContent] = useState(false);
   const { user } = useDashboardContext();
   const [postImage, setPostImage] = useState(null);
   const [postContent, setPostContent] = useState("");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleImageClick = () => {
@@ -23,20 +24,62 @@ const CreateContent = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPostImage(URL.createObjectURL(file)); // tạo đường dẫn tạm thời để hiển thị ảnh
+      const objectUrl = URL.createObjectURL(file);
+      setPostImage({ file, objectUrl });
+    }
+  };
+
+  const handlePostSubmit = async () => {
+    if (!postContent.trim() && !postImage) {
+      alert("Vui lòng nhập nội dung hoặc chọn ảnh trước khi đăng!");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const imageUrls = postImage ? [postImage.objectUrl] : [];
+
+      const payload = {
+        content: postContent,
+        mediaUrls: imageUrls,
+        isPublic: true,
+        isRepost: false,
+      };
+
+      const response = await privateAxios.post("/posts", payload);
+      const newPost = response.data.data.post;
+
+      const formattedPost = {
+        id: newPost.id,
+        avatar: newPost.profile?.profilePicture || avatar,
+        username:
+          newPost.profile?.displayName ||
+          newPost.profile?.username ||
+          "unknown",
+        content: newPost.content || "",
+        mediaUrls: newPost.mediaUrls || "[]",
+        comments: [],
+        initialLikes: newPost.likeCount || 0,
+        isLiked: newPost.isLiked || false,
+      };
+
+      // Gọi callback
+      onPostCreated?.(formattedPost);
+
+      setPostContent("");
+      setPostImage(null);
+      setShowCreateContent(false);
+    } catch (error) {
+      console.error("Lỗi khi đăng bài:", error.response?.data || error.message);
+      alert("Không thể đăng bài. Vui lòng thử lại!");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <Wrapper style={{ width: "100%" }}>
-      <div
-        className="row-post"
-        // onClick={() => setShowCreateContent((prev) => !prev) }
-        onClick={() => {
-          setShowCreateContent((prev) => !prev);
-          console.log("showCreateContent:", !showCreateContent);
-        }}
-      >
+      <div className="row-post" onClick={() => setShowCreateContent(true)}>
         <img src={avatar} alt="avatar" />
         <p>Có gì mới?</p>
         <button>Đăng</button>
@@ -50,9 +93,7 @@ const CreateContent = () => {
           <div className="post-header">
             <button
               className="btn btn-close"
-              onClick={() => {
-                setShowCreateContent((prev) => !prev);
-              }}
+              onClick={() => setShowCreateContent(false)}
             >
               Hủy
             </button>
@@ -70,12 +111,9 @@ const CreateContent = () => {
           <div className="post-content">
             <div className="post-user">
               <img src={avatar} alt="avatar" />
-              <p>
-                {user.name} {user.lastName}
-              </p>
+              <p>{user?.username}</p>
             </div>
 
-            {/* form input */}
             <div className="post-input">
               <textarea
                 placeholder="Có gì mới?"
@@ -87,7 +125,7 @@ const CreateContent = () => {
               {postImage && (
                 <div className="preview-image">
                   <img
-                    src={postImage}
+                    src={postImage.objectUrl}
                     alt="preview"
                     style={{
                       maxWidth: "100%",
@@ -114,19 +152,10 @@ const CreateContent = () => {
             </div>
             <button
               className="btn-confirm"
-              onClick={() => {
-                if (!postContent.trim() && !postImage) {
-                  alert("Vui lòng nhập nội dung hoặc chọn ảnh trước khi đăng!");
-                  return;
-                }
-                console.log("Nội dung:", postContent);
-                console.log("Ảnh:", postImage);
-                setPostContent("");
-                setPostImage(null);
-                setShowCreateContent(false);
-              }}
+              onClick={handlePostSubmit}
+              disabled={isSubmitting}
             >
-              Đăng
+              {isSubmitting ? "Đang đăng..." : "Đăng"}
             </button>
           </div>
         </div>

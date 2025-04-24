@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   .search-page {
     display: flex;
     flex-direction: column;
-    padding: 12px;
+    padding: 1.5rem;
     border: 0.5px solid #2d2d2d;
     max-width: 40rem;
     margin: 0 auto;
@@ -67,6 +67,33 @@ const Wrapper = styled.div`
 
   .interact {
     padding: 0.625rem;
+  }
+
+  .user-card {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    border-bottom: 0.5px solid #2d2d2d;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .user-email,
+  .user-followers {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .user-desc {
+    margin: 1rem auto;
+  }
+
+  .comment-content p {
+    color: #fff;
   }
 `;
 

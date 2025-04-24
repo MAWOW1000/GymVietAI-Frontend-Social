@@ -60,6 +60,7 @@ const Wrapper = styled.div`
   .popup-header p {
     font-weight: 500;
     margin: 0;
+    color: #fff;
   }
 
   .popup-body {
@@ -70,12 +71,14 @@ const Wrapper = styled.div`
   .popup-body img {
     width: 100%;
     border-radius: 0.5rem;
-    margin-top: 0.625rem;
+    /* margin-top: 0.625rem; */
   }
 
   .popup-body p {
     text-align: left;
     margin: 0;
+    color: #fff;
+    margin-bottom: 0.625rem;
   }
 
   .close-btn {

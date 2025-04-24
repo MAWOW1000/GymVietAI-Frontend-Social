@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const Wrapper = styled.div`
   .row-post {
     display: flex;
@@ -7,6 +8,7 @@ const Wrapper = styled.div`
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     background-color: transparent;
+
     img {
       width: 40px;
       height: 40px;
@@ -27,7 +29,6 @@ const Wrapper = styled.div`
       color: white;
       border-radius: 10px;
       padding: 0.5rem 1rem;
-
       cursor: pointer;
     }
     button:hover {
@@ -35,14 +36,9 @@ const Wrapper = styled.div`
     }
   }
 
-  //POST
   .show-post {
     display: flex;
-  }
-
-  .post {
-    display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -50,6 +46,11 @@ const Wrapper = styled.div`
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1100;
+  }
+
+  .post {
+    display: none;
   }
 
   .post-container {
@@ -59,6 +60,7 @@ const Wrapper = styled.div`
     border-radius: 10px;
     padding: 1rem;
     color: white;
+    z-index: 1101;
   }
 
   .post-header {
@@ -68,7 +70,6 @@ const Wrapper = styled.div`
     border-bottom: 1px solid #333;
     padding: 0;
     margin: 0;
-    /* padding-bottom: 10px; */
   }
 
   p {
@@ -98,7 +99,6 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     margin: 0.5rem;
-    z-index: 0;
   }
 
   .post-user img {
@@ -133,7 +133,6 @@ const Wrapper = styled.div`
 
   .post-file {
     display: flex;
-    /* justify-content: space-between;   */
     gap: 0.5rem;
     font-size: 1.3rem;
     margin: 0.5rem 0.5rem 0.5rem 1rem;
@@ -157,14 +156,14 @@ const Wrapper = styled.div`
 
   @media (max-width: 992px) {
     .show-post {
-      position: flex;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       max-width: 100vw;
       height: 100%;
       background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
+      z-index: 1100;
     }
 
     .post-container {
@@ -172,7 +171,9 @@ const Wrapper = styled.div`
       height: 100%;
       border-radius: 0;
       padding: 1rem;
+      z-index: 1101;
     }
   }
 `;
+
 export default Wrapper;

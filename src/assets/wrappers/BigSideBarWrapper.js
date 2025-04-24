@@ -30,11 +30,11 @@ const Wrapper = styled.aside`
       }
     }
     .nav-links {
-      padding-top: 2rem;
+      /* padding-top: 2rem; */
       display: flex;
       flex-direction: column;
 
-      margin-top: 10rem;
+      /* margin-top: 10rem; */
     }
     .nav-link {
       display: flex;

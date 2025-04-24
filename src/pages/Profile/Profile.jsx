@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDashboardContext } from "../Dashboard";
 import avatar from "../../assets/images/avatar-1.jpg";
 import EditProfile from "./components/EditProfile/EditProfile";
 import ProfileTabs from "./components/ProfileTabs/ProfileTabs";
-import UserInfo from "./components/UserInfo";
+import UserInfo from "../../components/UserInfo";
 import Wrapper from "./ProfileWrapper";
 
 const Profile = () => {
@@ -12,16 +12,15 @@ const Profile = () => {
   return (
     <Wrapper>
       <UserInfo
-        name={user.name}
+        username={user.username}
         gmail={user.gmail.split("@")[0]}
         lastName={user.lastName}
         avatar={avatar}
         description={user.description}
+        follower={user.follower}
       />
 
-      <div className="btn-container">
-        <EditProfile />
-      </div>
+      <EditProfile />
 
       <div className="tabbar">
         <ProfileTabs />

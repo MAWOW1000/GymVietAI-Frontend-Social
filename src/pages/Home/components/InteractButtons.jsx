@@ -30,7 +30,7 @@ const InteractButtons = ({
       </button>
       <button>
         <TfiComment onClick={onCommentClick} />
-        <p>25</p>
+        <p></p>
       </button>
       <button>
         <TbShare3 onClick={handleShare} />

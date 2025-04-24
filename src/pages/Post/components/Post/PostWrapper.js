@@ -1,4 +1,3 @@
-// src/assets/wrappers/PostWrapper.js
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -136,7 +135,7 @@ export const Wrapper = styled.div`
     align-items: center;
     padding: 0.625rem;
     border-top: 0.5px solid #ddd;
-    width: 100%;
+    /* width: 100%; */
   }
 
   .comment-input input {

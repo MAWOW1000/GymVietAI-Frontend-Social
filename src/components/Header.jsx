@@ -13,9 +13,7 @@ const Header = () => {
         <button type="button" className="toggle-btn" onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
-        <div>
-          <Logo />
-        </div>
+        <div>{/* <Logo /> */}</div>
         <div className="btn-container">
           <LogoutContainer />
         </div>

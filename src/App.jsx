@@ -6,6 +6,8 @@ import Explore from "./pages/Explore/Explore";
 import Message from "./pages/Message/Message";
 import Search from "./pages/Search/Search";
 import Post from "./pages/Post/Post";
+import Notify from "./pages/Notify/Notify";
+import User from "./pages/User/User";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "post/:postId",
         element: <Post />,
+      },
+      {
+        path: "notify",
+        element: <Notify />,
+      },
+      {
+        path: "user/:userId",
+        element: <User />,
       },
     ],
   },

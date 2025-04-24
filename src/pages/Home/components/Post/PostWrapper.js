@@ -26,11 +26,13 @@ const Wrapper = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    pointer-events: none;
   }
 
   .post-user p {
     font-size: 1rem;
     margin: 0;
+    pointer-events: none;
   }
 
   .post-user span {
@@ -39,6 +41,7 @@ const Wrapper = styled.div`
     font-size: 1rem;
     height: 1rem;
     padding: 0.2rem;
+    pointer-events: auto;
 
     &:hover {
       text-align: center;
@@ -57,8 +60,9 @@ const Wrapper = styled.div`
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
     width: 180px;
     padding: 8px;
-    z-index: 10;
+    z-index: 1000;
     color: #fff;
+    cursor: pointer;
   }
 
   .dropdown-menu .group {
@@ -78,6 +82,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    pointer-events: auto;
   }
 
   .dropdown-menu p:hover {
@@ -154,13 +160,7 @@ const Wrapper = styled.div`
       overflow-y: auto;
       transition: transform 0.3s ease-in-out;
       transform: translateY(100%);
-
-      z-index: 1000;
-
-      p {
-        margin: 0.5rem 1rem;
-        padding: 0.5rem;
-      }
+      z-index: 1000; /* Tăng z-index trên mobile */
     }
 
     .dropdown-menu.active {
@@ -173,10 +173,11 @@ const Wrapper = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6); /* Nền đen mờ */
+      background: rgba(0, 0, 0, 0.6);
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0s ease-in-out, visibility 0s ease-in-out;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      z-index: 999;
     }
 
     .dropdown-overlay.active {

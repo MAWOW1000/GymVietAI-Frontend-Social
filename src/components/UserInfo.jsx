@@ -2,13 +2,20 @@ import React from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 
-const UserInfo = ({ name, lastName, avatar, description, gmail }) => {
+const UserInfo = ({
+  username,
+  lastName,
+  avatar,
+  description,
+  gmail,
+  follower,
+}) => {
   return (
     <>
       <div className="user-info">
         <div className="user-name">
           <h3>
-            {name} {lastName}
+            {username} {lastName}
           </h3>
           <h5>{gmail}</h5>
         </div>
@@ -22,7 +29,7 @@ const UserInfo = ({ name, lastName, avatar, description, gmail }) => {
       </div>
 
       <div className="other">
-        <p>101 người theo dõi</p>
+        <p>{follower}</p>
         <div className="icons">
           <span>
             <FaInstagramSquare />
