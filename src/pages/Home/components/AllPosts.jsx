@@ -64,7 +64,6 @@ const AllPosts = ({ newPost }) => {
     }
   }, [newPost, currentUserId]);
 
-  // Hàm xử lý xóa bài post
   const handleDeletePost = (postId) => {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
   };

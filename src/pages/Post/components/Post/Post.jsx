@@ -3,7 +3,15 @@ import InteractButtons from "../../../Home/components/InteractButtons";
 import Comment from "../../../Home/components/Comment";
 import { useLike } from "../../../../components";
 
-const Post = ({ post, comments, onLoadMore, canLoadMore }) => {
+const Post = ({
+  post,
+  comments,
+  onLoadMore,
+  canLoadMore,
+  addComment,
+  deleteComment,
+  postId,
+}) => {
   const { likes, liked, handleLikeClick } = useLike(
     post.id,
     post.initialLikes,
@@ -31,7 +39,12 @@ const Post = ({ post, comments, onLoadMore, canLoadMore }) => {
         </div>
 
         <div className="post-comment">
-          <Comment comments={comments} postId={post.id} />
+          <Comment
+            comments={comments}
+            postId={post.id}
+            addComment={addComment}
+            deleteComment={deleteComment}
+          />
           {canLoadMore && (
             <button onClick={onLoadMore} className="load-more-btn">
               Tải thêm bình luận

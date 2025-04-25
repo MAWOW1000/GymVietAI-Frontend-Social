@@ -21,17 +21,24 @@ const PostPopup = ({ post, onClose, className, onLikeClick }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const limit = 20;
+  const limit = 10;
 
   const mediaUrl = JSON.parse(mediaUrls || "[]")?.[0] || null;
 
   const fetchComments = async () => {
+    if (!postId) {
+      setError("Bài viết không hợp lệ!");
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await privateAxios.get(
-        `/posts/${postId}/replies?page=${page}&limit=${limit}`
+        `/comments/post/${postId}?page=${page}&limit=${limit}`
       );
-      const fetchedComments = response.data.data.replies || [];
+      // console.log("API response:", response.data);
+      const fetchedComments = response.data.data.comments || [];
 
       setComments((prev) => {
         const newComments = fetchedComments.filter(
@@ -41,7 +48,11 @@ const PostPopup = ({ post, onClose, className, onLikeClick }) => {
       });
       setError(null);
     } catch (error) {
-      setError("Không thể tải bình luận. Vui lòng thử lại!");
+      if (error.response?.status === 404) {
+        setError("Không tìm thấy bình luận cho bài viết này!");
+      } else {
+        setError("Không thể tải bình luận. Vui lòng thử lại!");
+      }
       console.error(
         "Error fetching comments:",
         error.response?.data || error.message
@@ -51,21 +62,31 @@ const PostPopup = ({ post, onClose, className, onLikeClick }) => {
     }
   };
 
-  // Reset comments và page khi postId thay đổi
+  const addComment = (newComment) => {
+    setComments((prev) => {
+      const uniqueComments = Array.from(
+        new Map([...prev, newComment].map((c) => [c.id, c])).values()
+      );
+      return uniqueComments;
+    });
+  };
+
+  const deleteComment = (commentId) => {
+    setComments((prev) => prev.filter((comment) => comment.id !== commentId));
+  };
+
   useEffect(() => {
     setComments([]);
     setPage(1);
     fetchComments();
   }, [postId]);
 
-  // Fetch thêm comments khi page thay đổi
   useEffect(() => {
     if (page > 1) {
       fetchComments();
     }
   }, [page]);
 
-  // Xử lý tải thêm comment
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
@@ -112,7 +133,12 @@ const PostPopup = ({ post, onClose, className, onLikeClick }) => {
               <p className="error">{error}</p>
             ) : (
               <>
-                <Comment comments={comments} postId={postId} />
+                <Comment
+                  comments={comments}
+                  postId={postId}
+                  addComment={addComment}
+                  deleteComment={deleteComment}
+                />
                 {comments.length >= page * limit && (
                   <button onClick={handleLoadMore} disabled={loading}>
                     {loading ? "Đang tải..." : "Tải thêm bình luận"}

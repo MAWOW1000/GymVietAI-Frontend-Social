@@ -114,6 +114,7 @@ const Wrapper = styled.div`
     margin: -1rem 0 -1rem 1.7rem;
     display: flex;
     align-items: center;
+    height: 3rem;
   }
 
   .interact button {

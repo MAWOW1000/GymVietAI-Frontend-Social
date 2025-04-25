@@ -72,6 +72,7 @@ const Wrapper = styled.div`
     width: 100%;
     border-radius: 0.5rem;
     /* margin-top: 0.625rem; */
+    margin-bottom: 1rem;
   }
 
   .popup-body p {
@@ -122,6 +123,10 @@ const Wrapper = styled.div`
     display: flex;
     align-items: flex-start;
     /* margin-bottom: 0.625rem; */
+    border-bottom: 0.5px solid #4e4e4e;
+    button {
+      background: transparent;
+    }
   }
 
   .comment-avatar {
@@ -130,11 +135,31 @@ const Wrapper = styled.div`
     margin-right: 0.625rem;
   }
 
+  .menu-dropdown {
+    .menu-item {
+      position: absolute;
+      right: 0;
+      background: #1a1a1a !important;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+      width: 180px;
+      padding: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .comment-content {
     background: transparent;
     padding: 0.5rem 0.75rem;
     border-radius: 10px;
-    max-width: 80%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
   }
 
   .comment-user {

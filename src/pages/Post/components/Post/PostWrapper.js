@@ -41,7 +41,7 @@ export const Wrapper = styled.div`
   }
 
   .body p {
-    margin: 0 1.2rem 0 3rem;
+    margin: 1rem 1.2rem 1rem 3rem;
     padding: 0;
   }
 
@@ -59,6 +59,7 @@ export const Wrapper = styled.div`
     align-items: center;
     border: 0.5px solid rgba(255, 255, 255, 0.2);
     border-width: 0.5px 0;
+    height: 3rem;
   }
   .interact button {
     background: none;
