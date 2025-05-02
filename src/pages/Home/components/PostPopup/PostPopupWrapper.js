@@ -69,10 +69,11 @@ const Wrapper = styled.div`
   }
 
   .popup-body img {
-    width: 100%;
+    /* width: 100%; */
     border-radius: 0.5rem;
     /* margin-top: 0.625rem; */
     margin-bottom: 1rem;
+    max-height: 20rem;
   }
 
   .popup-body p {
