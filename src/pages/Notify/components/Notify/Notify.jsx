@@ -11,13 +11,20 @@ const Notify = ({ notify, defaultImage }) => {
     return `${Math.floor(diff / 86400)} ngày trước`;
   };
 
+  const typeDisplay = {
+    COMMENT: "comment",
+    LIKE: "like",
+    FOLLOW: "follow",
+    FOLLOW_REQUEST: "want to follow",
+  };
+
   return (
     <Wrapper>
       <div className="notify">
         <div className="header">
           <img
             src={notify.sender?.profilePicture || defaultImage}
-            alt="avt"
+            alt="avatar"
             onError={(e) => (e.target.src = defaultImage)}
           />
         </div>
@@ -28,13 +35,13 @@ const Notify = ({ notify, defaultImage }) => {
                 notify.sender?.username ||
                 "Unknown"}
             </p>
-            <p style={{ color: "#999" }}>{getRelativeTime(notify.createdAt)}</p>
+            <p>{getRelativeTime(notify.createdAt)}</p>
           </div>
           <div className="reason">
-            <p>{(notify.type || "notification").toLowerCase()}</p>
+            <p>{typeDisplay[notify.type] || "thông báo"}</p>
           </div>
           <div className="content">
-            <p>{notify.message || "No message"}</p>
+            <p>{notify.message || "Không có nội dung"}</p>
           </div>
         </div>
       </div>

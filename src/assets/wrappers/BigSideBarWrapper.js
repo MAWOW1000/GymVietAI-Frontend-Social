@@ -67,6 +67,44 @@ const Wrapper = styled.aside`
     .pending {
       background: #f8fafc;
     }
+
+    .nav-links .nav-link .icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links .nav-link .icon .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: red;
+      color: white;
+      font-size: 0.7rem;
+      border-radius: 50%;
+      padding: 2px 5px;
+      line-height: 1;
+    }
+
+    .navbar .nav-links .nav-link .icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar .nav-links .nav-link .icon .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: red;
+      color: white;
+      font-size: 0.7rem;
+      border-radius: 50%;
+      padding: 2px 5px;
+      line-height: 1;
+    }
   }
 `;
 export default Wrapper;

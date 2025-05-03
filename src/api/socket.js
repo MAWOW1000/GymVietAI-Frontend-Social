@@ -1,13 +1,16 @@
 import { io } from "socket.io-client";
 
 const initSocket = () => {
+  const token = localStorage.getItem("accessToken");
+  if (!token) {
+    console.error("No token found");
+    return null;
+  }
+
   const socket = io("http://localhost:8081", {
     transports: ["websocket", "polling"],
     withCredentials: true,
-    auth: {
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndpYnVjYXRlQGdtYWlsLmNvbSIsImlkIjoiMDljNDEwMjEtYzZiNS00NDBkLTg4OTMtNjdlNjEzMzJmMzkwIiwiaWF0IjoxNzQ1NTgzMTc4LCJleHAiOjE3NDU4ODMxNzh9.1oIhutIkb0tqRdT6YjGgpbBIWSk8S4JmpLhTBysPouE",
-    },
+    auth: { token },
     reconnectionAttempts: 5,
     timeout: 2000,
   });
@@ -18,6 +21,9 @@ const initSocket = () => {
 
   socket.on("connect_error", (err) => {
     console.error("Socket connection error:", err.message);
+    if (err.message.includes("Invalid token")) {
+      console.log("Invalid token, please check authentication");
+    }
   });
 
   return socket;

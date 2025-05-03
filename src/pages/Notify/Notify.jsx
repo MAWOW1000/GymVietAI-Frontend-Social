@@ -3,57 +3,15 @@ import { Notify as NotifyComponent } from "../../components";
 import Wrapper from "./NotifyWrapper";
 import image from "../../assets/images/avatar-1.jpg";
 import { useDashboardContext } from "../Dashboard";
-import { initSocket } from "../../api/socket";
 import { privateAxios } from "../../api/client";
 
 const Notify = () => {
-  const { user } = useDashboardContext();
-  const [notifications, setNotifications] = useState([]);
+  const { user, notifications, setNotifications, markAsRead } =
+    useDashboardContext();
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const limit = 20;
-
-  useEffect(() => {
-    if (!user?.id) {
-      console.log("User ID not available, skipping WebSocket");
-      return;
-    }
-
-    const socket = initSocket();
-    if (!socket) {
-      console.error("Failed to initialize WebSocket");
-      return;
-    }
-
-    socket.on("connect_error", (error) => {
-      console.error("WebSocket connect error:", error.message);
-      if (error.message.includes("Invalid token")) {
-        console.log("Invalid token, please check token with backend");
-      }
-    });
-
-    socket.on("connect", () => {
-      console.log("WebSocket connected for notifications");
-      socket.emit("join", { userId: user.id });
-      console.log(`Joined room user:${user.id}`);
-    });
-
-    socket.on("notification", (newNotification) => {
-      console.log("New notification:", newNotification);
-      setNotifications((prev) => {
-        if (prev.some((notif) => notif.id === newNotification.id)) {
-          return prev;
-        }
-        return [newNotification, ...prev];
-      });
-    });
-
-    return () => {
-      socket.off("notification");
-      socket.off("connect_error");
-      socket.off("connect");
-    };
-  }, [user?.id]);
+  const [hasFetchedInitial, setHasFetchedInitial] = useState(false);
 
   const fetchNotifications = async () => {
     setLoading(true);
@@ -70,6 +28,19 @@ const Notify = () => {
         );
         return [...prev, ...newNotifications];
       });
+      const unreadIdsOnPage = fetchedNotifications
+        .filter((n) => !n.isRead)
+        .map((n) => n.id);
+      if (unreadIdsOnPage.length > 0 && (page === 1 || hasFetchedInitial)) {
+        await markAsRead(unreadIdsOnPage);
+        console.log(
+          "Đánh dấu đã đọc các thông báo (page:",
+          page,
+          "):",
+          unreadIdsOnPage
+        );
+      }
+      setHasFetchedInitial(true);
     } catch (error) {
       console.error(
         "Lỗi khi lấy thông báo:",
@@ -86,6 +57,15 @@ const Notify = () => {
 
   useEffect(() => {
     if (user?.id) {
+      setPage(1);
+      setNotifications([]);
+      setHasFetchedInitial(false);
+      fetchNotifications();
+    }
+  }, [user?.id]);
+
+  useEffect(() => {
+    if (user?.id && page > 1) {
       fetchNotifications();
     }
   }, [page, user?.id]);
@@ -93,16 +73,25 @@ const Notify = () => {
   return (
     <Wrapper>
       <div className="Notify">
-        {notifications.map((notify) => (
-          <NotifyComponent
-            key={notify.id}
-            notify={notify}
-            defaultImage={image}
-          />
-        ))}
+        {notifications.length === 0 ? (
+          <p className="no-notifications">Chưa có thông báo nào</p>
+        ) : (
+          notifications.map((notify) => (
+            <NotifyComponent
+              key={notify.id}
+              notify={notify}
+              defaultImage={image}
+            />
+          ))
+        )}
+        {loading && <p className="loading">Đang tải thông báo...</p>}
         {notifications.length >= page * limit && (
-          <button onClick={handleLoadMore} disabled={loading}>
-            Tải thêm thông báo
+          <button
+            className="load-more"
+            onClick={handleLoadMore}
+            disabled={loading}
+          >
+            {loading ? "Đang tải..." : "Tải thêm thông báo"}
           </button>
         )}
       </div>

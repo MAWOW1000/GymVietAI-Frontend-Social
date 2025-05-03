@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useDashboardContext } from "../pages/Dashboard";
 
 const NavLinks = ({ isBigSidebar }) => {
-  const { toggleSidebar } = useDashboardContext();
+  const { toggleSidebar, unreadCount } = useDashboardContext();
 
   return (
     <div className="nav-links">
@@ -18,7 +18,12 @@ const NavLinks = ({ isBigSidebar }) => {
             onClick={toggleSidebar ? null : isBigSidebar}
             end
           >
-            <span className="icon">{icon}</span>
+            <span className="icon">
+              {icon}
+              {text === "notify" && unreadCount > 0 && (
+                <span className="notification-badge">{unreadCount}</span>
+              )}
+            </span>
             {/* {text} */}
           </NavLink>
         );
